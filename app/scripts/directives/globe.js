@@ -17,10 +17,13 @@ angular.module('webunleashedExampleApp')
 				var scene;
 				var renderer;
 
+				var width = element[0].parentNode.clientWidth;
+				var height = width * 2/3;
+				
 				init();
 
 				function init() {
-					camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 2000);
+					camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
 					camera.position.set(2, 4, 5);
 					scene = new THREE.Scene();
 
@@ -34,7 +37,7 @@ angular.module('webunleashedExampleApp')
 
 					// Renderer
 					renderer = new THREE.WebGLRenderer();
-					renderer.setSize(window.innerWidth, window.innerHeight);
+					renderer.setSize(width, height);
 					element[0].appendChild(renderer.domElement);
 
 					// Events
@@ -43,8 +46,8 @@ angular.module('webunleashedExampleApp')
 				}
 				//
 				function onWindowResize(event) {
-					renderer.setSize(window.innerWidth, window.innerHeight);
-					camera.aspect = window.innerWidth / window.innerHeight;
+					renderer.setSize(width, height);
+					camera.aspect = width / height;
 					camera.updateProjectionMatrix();
 				}
 
