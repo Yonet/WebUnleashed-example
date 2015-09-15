@@ -10,8 +10,8 @@
 angular.module('webunleashedExampleApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [
-      'HTML5 Boilerplate',
+      'WebUnleashed',
       'AngularJS',
-      'Karma'
+      'Three.js'
     ];
   });
