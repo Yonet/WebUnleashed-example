@@ -7,7 +7,7 @@
  * # globe
  */
 angular.module('webunleashedExampleApp')
-	.directive('globe', function () {
+	.directive('globe', ['sphereFactory',function (sphereFactory) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -34,18 +34,19 @@ angular.module('webunleashedExampleApp')
 				element[0].appendChild( renderer.domElement );
 
 
-				//Cube geometry
-				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				// //Cube geometry
+				// var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
-				//Basic material
-				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+				// //Basic material
+				// var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 
-				//Mesh
-				var cube = new THREE.Mesh( geometry, material );
+				// //Mesh
+				// var cube = new THREE.Mesh( geometry, material );
 
-
+				var cube = sphereFactory.createSphere();
+				var cubeTwo = sphereFactory.createSphere(0x00ffff);
 				scene.add( cube );
-
+				scene.add( cubeTwo );
 				camera.position.z = 5;
 
 				var render = function () {
@@ -56,7 +57,7 @@ angular.module('webunleashedExampleApp')
 					// Rotation animation
 					cube.rotation.x += 0.001;
 					cube.rotation.y += 0.001;
-
+					cubeTwo.rotation.x = -0.1;
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);
 				};
@@ -65,4 +66,4 @@ angular.module('webunleashedExampleApp')
 
 			}
 		};
-	});
+	}]);
