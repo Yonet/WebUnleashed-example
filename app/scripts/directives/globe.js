@@ -10,9 +10,14 @@ angular.module('webunleashedExampleApp')
 	.directive('globe', function () {
 		return {
 			restrict: 'E',
+			scope: {
+				width:"=width", // bindings
+				height:  '@height', // static value
+				color: '&color'    // expression
+			},
 			link: function postLink(scope, element, attrs) {
 				//Set the width and height from the parent element width
-				var width = element[0].parentNode.clientWidth;
+				var width = attrs.width || element[0].parentNode.clientWidth;
 				var height = width * 2/3;
 
 				//Scene
