@@ -16,7 +16,8 @@ angular.module('webunleashedExampleApp')
 				var camera;
 				var scene;
 				var renderer;
-
+				var width = element[0].parentNode.clientWidth;
+				var height = element[0].parentNode.clientWidth;
 				init();
 
 				function init() {
@@ -34,7 +35,7 @@ angular.module('webunleashedExampleApp')
 
 					// Renderer
 					renderer = new THREE.WebGLRenderer();
-					renderer.setSize(window.innerWidth, window.innerHeight);
+					renderer.setSize(width, height);
 					element[0].appendChild(renderer.domElement);
 
 					// Events
