@@ -38,6 +38,9 @@ angular.module('webunleashedExampleApp')
 				var light = new THREE.DirectionalLight( 0xffffff, 2);
 				light.position.set(.5, 0, 1);
 				scene.add(light);
+
+				var ambientLight = new THREE.AmbientLight(0x222222, 10);
+				// scene.add(ambientLight);
 				
 				//Create the globe sphere from the sphere factory method
 				var globe = sphereFactory.createSphere(200);
