@@ -32,11 +32,14 @@ angular.module('webunleashedExampleApp')
       var radius = radius || 5;
       console.log('r', radius)
 
+      // radius — sphere radius. Default is 50.
       // widthSegments — number of horizontal segments. Minimum value is 3, and the default is 8.
       // heightSegments — number of vertical segments. Minimum value is 2, and the default is 6.
       var globeGeometry = new THREE.SphereGeometry(1, 32, 16);
-      var globeMaterial = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-
+      var globeMaterial = new THREE.MeshPhongMaterial();
+      // new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+      // console.log('gm',globeMaterial)
+      globeMaterial.map = THREE.ImageUtils.loadTexture('/images/globe/earthmap4k.jpg');
       var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
       console.log(globeMesh);
       return globeMesh;
