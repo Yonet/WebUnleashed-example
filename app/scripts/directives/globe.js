@@ -40,10 +40,13 @@ angular.module('webunleashedExampleApp')
 				scene.add(light);
 				
 				//Create the globe sphere from the sphere factory method
-				var globe = sphereFactory.createSphere(5);
+				var globe = sphereFactory.createSphere(200);
+
+				var cloud = sphereFactory.createCloud(205);
 
 				scene.add(globe);
-				camera.position.z = 3;
+				scene.add(cloud);
+				camera.position.z = 550;
 
 				var render = function () {
 
@@ -52,6 +55,7 @@ angular.module('webunleashedExampleApp')
 
 					// Rotation animation
 					globe.rotation.y += 0.001;
+					cloud.rotation.y += 0.0015;
 
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);

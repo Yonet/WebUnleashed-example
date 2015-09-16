@@ -8,48 +8,69 @@
  * Factory in the webunleashedExampleApp.
  */
 angular.module('webunleashedExampleApp')
-  .factory('sphereFactory', function () {
-    // Service logic
-    // ...
+	.factory('sphereFactory', function () {
+		// Service logic
+		// ...
 
-    var map;
-    var mapUrl = "../images/earth_atmos_2048.jpg";
+		var map, bumpMap;
+		var mapUrl = "../images/earthmap4k.jpg";
+		var bumpMapUrl = "../images/earthbump4k.jpg"
 
-    var createCube = function(color){
-      var color = color || 0x00ff00;
+		var createCube = function(color){
+			var color = color || 0x00ff00;
 
-      //Cube geometry
-        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			//Cube geometry
+				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
-        //Basic material
-        var material = new THREE.MeshBasicMaterial( { color: color } );
+				//Basic material
+				var material = new THREE.MeshBasicMaterial( { color: color } );
 
-        //Mesh
-        var cube = new THREE.Mesh( geometry, material );
+				//Mesh
+				var cube = new THREE.Mesh( geometry, material );
 
-        return cube;
+				return cube;
 
-    }
+		}
 
-    var createSphere = function(radius) {
-      var radius = radius || 5;
+		var createSphere = function(radius) {
+			var radius = radius || 1;
 
-      // widthSegments — number of horizontal segments. Minimum value is 3, and the default is 8.
-      // heightSegments — number of vertical segments. Minimum value is 2, and the default is 6.
-      var globeGeometry = new THREE.SphereGeometry(1, 32, 16);
+			// widthSegments — number of horizontal segments. Minimum value is 3, and the default is 8.
+			// heightSegments — number of vertical segments. Minimum value is 2, and the default is 6.
+			var globeGeometry = new THREE.SphereGeometry(radius, 32, 16);
 
-      //Create the texture map
-      map = THREE.ImageUtils.loadTexture(mapUrl);
-      var globeMaterial = new THREE.MeshPhongMaterial({ map: map });
+			//Create the texture map
+			map = THREE.ImageUtils.loadTexture(mapUrl);
+			bumpMap = THREE.ImageUtils.loadTexture(bumpMapUrl);
+			var globeMaterial = new THREE.MeshPhongMaterial({ map: map, bumpMap: bumpMap, bumpScale: 2});
 
-      var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
-      console.log('m',globeMaterial);
-      return globeMesh;
-    }
+			var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
+			console.log('m',globeMaterial);
+			return globeMesh;
+		}
 
-    // Public API here
-    return {
-      createSphere: createSphere,
-      createCube: createCube
-    };
-  });
+		var createCloud = function(radius) {
+			//Geo
+			var cloudGeometry = new THREE.SphereGeometry(radius, 32, 32);
+
+			//Material
+			var cloudMaterial = new THREE.MeshPhongMaterial({
+				map: THREE.ImageUtils.loadTexture('../images/earthclouds4k.png'),
+				opacity: 0.8,
+				transparent: true,
+				depthWrite: false
+			});
+
+			//Mesh
+			var cloudMesh = new THREE.Mesh(cloudGeometry, cloudMaterial);
+
+			return cloudMesh;
+		}
+
+		// Public API here
+		return {
+			createSphere: createSphere,
+			createCube: createCube,
+			createCloud: createCloud
+		};
+	});
