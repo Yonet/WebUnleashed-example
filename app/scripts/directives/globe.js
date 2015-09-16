@@ -17,9 +17,7 @@ angular.module('webunleashedExampleApp')
 			},
 			link: function postLink(scope, element, attrs) {
 				//Three.js code goes here...
-				console.log('scope is ', scope);
-				console.log('element is ', element);
-				console.log('attrs is ', attrs);
+
 				//Set the width and height from the parent element width
 				var width = attrs.width || element[0].parentNode.clientWidth;
 				var height = width * 2/3;
@@ -37,23 +35,15 @@ angular.module('webunleashedExampleApp')
 				//Add the renderer to the DOM
 				element[0].appendChild( renderer.domElement );
 
-
-				// //Cube geometry
-				// var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-
-				// //Basic material
-				// var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-
-				// //Mesh
-				// var cube = new THREE.Mesh( geometry, material );
-
-				var cube = sphereFactory.createCube();
-				var cubeTwo = sphereFactory.createCube(0x00ffff);
+				var light = new THREE.DirectionalLight( 0xffffff, 2);
+				light.position.set(.5, 0, 1);
+				scene.add(light);
+				
+				//Create the globe sphere from the sphere factory method
 				var globe = sphereFactory.createSphere(5);
-				// scene.add( cube );
-				// scene.add( cubeTwo );
+
 				scene.add(globe);
-				camera.position.z = 5;
+				camera.position.z = 3;
 
 				var render = function () {
 
@@ -61,11 +51,8 @@ angular.module('webunleashedExampleApp')
 					requestAnimationFrame( render );
 
 					// Rotation animation
-					cube.rotation.x += 0.001;
-					cube.rotation.y += 0.001;
-					cubeTwo.rotation.x = -0.1;
-					// globe.position.x += 0.1;
-					// globe.position.y += 0.01;
+					globe.rotation.y += 0.001;
+
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);
 				};
