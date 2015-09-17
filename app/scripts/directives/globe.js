@@ -7,7 +7,7 @@
  * # globe
  */
 angular.module('webunleashedExampleApp')
-	.directive('globe', ['sphereFactory',function (sphereFactory) {
+	.directive('globe', ['sphereFactory', function (sphereFactory) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -46,9 +46,9 @@ angular.module('webunleashedExampleApp')
 				var cube = sphereFactory.createCube();
 				var cubeTwo = sphereFactory.createCube(0x00ffff);
 				var globe = sphereFactory.createSphere(5);
-				// scene.add( cube );
-				// scene.add( cubeTwo );
-				scene.add(globe);
+				scene.add( cube );
+				scene.add( cubeTwo );
+				// scene.add(globe);
 				camera.position.z = 5;
 
 				var render = function () {
@@ -60,8 +60,7 @@ angular.module('webunleashedExampleApp')
 					cube.rotation.x += 0.001;
 					cube.rotation.y += 0.001;
 					cubeTwo.rotation.x = -0.1;
-					// globe.position.x += 0.1;
-					// globe.position.y += 0.01;
+					
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);
 				};

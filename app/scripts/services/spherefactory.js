@@ -8,46 +8,42 @@
  * Factory in the webunleashedExampleApp.
  */
 angular.module('webunleashedExampleApp')
-  .factory('sphereFactory', function () {
-    // Service logic
-    // ...
+	.factory('sphereFactory', function () {
+		// Service logic
+		// ...
 
-    var createCube = function(color){
-      var color = color || 0x00ff00;
+		var createCube = function(color){
+			var color = color || 0x00ff00;
 
-      //Cube geometry
-        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			//Cube geometry
+			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
-        //Basic material
-        var material = new THREE.MeshBasicMaterial( { color: color } );
+			//Basic material
+			var material = new THREE.MeshBasicMaterial( { color: color } );
 
-        //Mesh
-        var cube = new THREE.Mesh( geometry, material );
+			//Mesh
+			var cube = new THREE.Mesh( geometry, material );
 
-        return cube;
+			return cube;
 
-    }
+		}
 
-    var createSphere = function(radius) {
-      var radius = radius || 5;
-      console.log('r', radius)
+		var createSphere = function(radius) {
+			var radius = radius || 5;
+			console.log('r', radius)
 
-      // radius — sphere radius. Default is 50.
-      // widthSegments — number of horizontal segments. Minimum value is 3, and the default is 8.
-      // heightSegments — number of vertical segments. Minimum value is 2, and the default is 6.
-      var globeGeometry = new THREE.SphereGeometry(1, 32, 16);
-      var globeMaterial = new THREE.MeshPhongMaterial();
-      // new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-      // console.log('gm',globeMaterial)
-      globeMaterial.map = THREE.ImageUtils.loadTexture('/images/globe/earthmap4k.jpg');
-      var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
-      console.log(globeMesh);
-      return globeMesh;
-    }
+			var globeGeometry = new THREE.SphereGeometry(1, 32, 16);
+			var globeMaterial = new THREE.MeshBasicMaterial( {color: 0x00ff00} );//new THREE.MeshPhongMaterial();
 
-    // Public API here
-    return {
-      createSphere: createSphere,
-      createCube: createCube
-    };
-  });
+			// globeMaterial.map = THREE.ImageUtils.loadTexture('/images/globe/earthmap4k.jpg');
+			var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
+			console.log(globeMesh);
+			return globeMesh;
+		}
+
+		// Public API here
+		return {
+			createSphere: createSphere,
+			createCube: createCube
+		};
+	});
