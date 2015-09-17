@@ -40,7 +40,7 @@ angular.module('webunleashedExampleApp')
 				scene.add(light);
 				
 				//Create the globe sphere from the sphere factory method
-				var globe = sphereFactory.createSphere(5);
+				var globe = sphereFactory.createSphere(1);
 
 				scene.add(globe);
 				camera.position.z = 3;

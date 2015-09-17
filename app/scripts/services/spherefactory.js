@@ -8,48 +8,49 @@
  * Factory in the webunleashedExampleApp.
  */
 angular.module('webunleashedExampleApp')
-  .factory('sphereFactory', function () {
-    // Service logic
-    // ...
+	.factory('sphereFactory', function () {
+		// Service logic
+		// ...
 
-    var map;
-    var mapUrl = "../images/earth_atmos_2048.jpg";
 
-    var createCube = function(color){
-      var color = color || 0x00ff00;
 
-      //Cube geometry
-        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+		var createCube = function(color){
+			var color = color || 0x00ff00;
 
-        //Basic material
-        var material = new THREE.MeshBasicMaterial( { color: color } );
+			//Cube geometry
+				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
-        //Mesh
-        var cube = new THREE.Mesh( geometry, material );
+				//Basic material
+				var material = new THREE.MeshBasicMaterial( { color: color } );
 
-        return cube;
+				//Mesh
+				var cube = new THREE.Mesh( geometry, material );
 
-    }
+				return cube;
 
-    var createSphere = function(radius) {
-      var radius = radius || 5;
+		}
 
-      // widthSegments — number of horizontal segments. Minimum value is 3, and the default is 8.
-      // heightSegments — number of vertical segments. Minimum value is 2, and the default is 6.
-      var globeGeometry = new THREE.SphereGeometry(1, 32, 16);
+		var map;
+		var mapUrl = "../images/earth_atmos_2048.jpg";
 
-      //Create the texture map
-      map = THREE.ImageUtils.loadTexture(mapUrl);
-      var globeMaterial = new THREE.MeshPhongMaterial({ map: map });
+		var createSphere = function(radius) {
+			var radius = radius || 1;
 
-      var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
-      console.log('m',globeMaterial);
-      return globeMesh;
-    }
+			//Geometry
+			var globeGeometry = new THREE.SphereGeometry(radius, 32, 16);
 
-    // Public API here
-    return {
-      createSphere: createSphere,
-      createCube: createCube
-    };
-  });
+			//Create the texture map
+			map = THREE.ImageUtils.loadTexture(mapUrl);
+			var globeMaterial = new THREE.MeshPhongMaterial({ map: map });
+
+			var globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
+
+			return globeMesh;
+		}
+
+		// Public API here
+		return {
+			createSphere: createSphere,
+			createCube: createCube
+		};
+	});
