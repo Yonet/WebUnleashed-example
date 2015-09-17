@@ -12,9 +12,10 @@ angular.module('webunleashedExampleApp')
 			restrict: 'E',
 			scope: {
 				width:"=width", // bindings
-				height:  '@height', // static value
+				height: '@height', // static value
 				color: '&color'    // expression
 			},
+
 			link: function postLink(scope, element, attrs) {
 				//Set the width and height from the parent element width
 				var width = attrs.width || element[0].parentNode.clientWidth;
@@ -54,8 +55,8 @@ angular.module('webunleashedExampleApp')
 					requestAnimationFrame( render );
 
 					// Rotation animation
-					cube.rotation.x += 0.001;
-					cube.rotation.y += 0.001;
+					cube.rotation.x += 0.01;
+					cube.rotation.y += 0.01;
 
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);
