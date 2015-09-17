@@ -49,8 +49,8 @@ angular.module('webunleashedExampleApp')
 					requestAnimationFrame( render );
 
 					// Rotation animation
-					cube.rotation.x += 0.001;
-					cube.rotation.y += 0.001;
+					cube.rotation.x += 0.01;
+					cube.rotation.y += 0.01;
 
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);
