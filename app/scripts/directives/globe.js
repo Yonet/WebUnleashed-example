@@ -40,7 +40,7 @@ angular.module('webunleashedExampleApp')
 				scene.add(light);
 
 				var ambientLight = new THREE.AmbientLight(0x222222, 10);
-				// scene.add(ambientLight);
+				scene.add(ambientLight);
 				
 				//Create the globe sphere from the sphere factory method
 				var globe = sphereFactory.createSphere(200);
