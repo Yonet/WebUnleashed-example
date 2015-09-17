@@ -1,7 +1,8 @@
 # webunleashed-example
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+This project is created for [WebUnleashed 2015 - Toronto](http://fitc.ca/event/webu15/).
+
+Follow the steps from branch step-0 to step-5.
 
 ## Build & development
 
