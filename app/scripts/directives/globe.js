@@ -18,7 +18,7 @@ angular.module('webunleashedExampleApp')
 			link: function postLink(scope, element, attrs) {
 				//Set the width and height from the parent element width
 				var width = attrs.width || element[0].parentNode.clientWidth;
-				var height = width * 2/3;
+				var height = width;
 
 				//Scene
 				var scene = new THREE.Scene();
@@ -59,8 +59,10 @@ angular.module('webunleashedExampleApp')
 					// Rotation animation
 					cube.rotation.x += 0.001;
 					cube.rotation.y += 0.001;
-					cubeTwo.rotation.x = -0.1;
-					
+					cube.position.x = 1;
+					cubeTwo.position.x = -1;
+					cubeTwo.rotation.x += 0.001;
+					cubeTwo.rotation.y += 0.001;
 					//Actual rendering the scene with the camera
 					renderer.render(scene, camera);
 				};
